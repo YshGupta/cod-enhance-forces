@@ -1,0 +1,25 @@
+{
+  "manifest_version": 2,
+  "name": "Codeforces Enhancer",
+  "version": "1.0",
+  "description": "A Chrome extension to enhance the Codeforces experience.",
+  "permissions": ["activeTab", "tabs", "https://codeforces.com/*", "storage" ],
+  "content_scripts": [
+    {
+      "matches": ["https://codeforces.com/*"],
+      "js": ["content.js"],
+      "css": ["styles.css"]
+    }
+  ],
+  "background": {
+    "scripts": ["background.js"],
+    "persistent": false
+  },
+  "icons": {
+    "48": "icon.png"
+  },
+  "browser_action": {
+    "default_icon": "icon.png",
+      "default_popup": "popup.html"
+  }
+}
