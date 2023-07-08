@@ -39,6 +39,7 @@ let origilt = {} ;
 
 
 function design() {
+  
   convertColors();  
   constcolor();
   changeparacolor();
@@ -51,6 +52,8 @@ function design() {
   ratingchanges();
   searchbox();
   tagbox();
+  change_spoiler();
+  verdict();
 }
 function reset() {
   reset_convcol();
@@ -66,6 +69,7 @@ function reset() {
   reset_rating_changes();
   reset_search_box();
   reset_tag_box();
+  reset_spoiler();
   setTimeout(() => {
       window.location.reload();
       console.log("reload");
@@ -82,7 +86,14 @@ function reset() {
   //   paragraphs[i].style.color = originalStyles.paragraphColor[i];
   // }
 }
-
+function reset_spoiler(){
+  let a = document.querySelectorAll(".spoiler-content")
+  for(var i = 0 ; i < a.length; i++){
+    var b = a[i];
+    // b.style.setProperty('backgroud-color' , 'black' , 'important');
+    b.style.backgroundColor = '#def';
+  }
+}
 function reset_convcol(){
   var elements = document.querySelectorAll('*');
 
@@ -126,6 +137,12 @@ function reset_linkk(){
 function reset_tables(){
   // #e1e1e1
   let table = document.getElementsByClassName("datatable")
+  // let spans= document.querySelectorAll('span , .welldone');
+  // for(var i= 0 ; i < spans.length ; i++){
+  //   spans[i].style.color = "green";
+  // }
+
+
   for(var i= 0 ; i < table.length ; i++){
     table[i].style.backgroundColor = "#e1e1e1";
     table[i].style.borderColor = "rgb(183 185 185)";  
@@ -176,7 +193,7 @@ function reset_input(){
 function reset_const(){
   setTimeout(function() {
     console.log("Delayed action executed after 2 seconds");
-    let elemens = document.querySelectorAll('.mo , .mi , .mn');
+    let elemens = document.querySelectorAll('.mo , .mi , .mn , .mtext' );
     // console.log(elemens);
     for(var i = 0 ; i < elemens.length ; i++){
       elemens[i].style.color = "black";
@@ -239,7 +256,13 @@ function reset_tag_box(){
 }
 // let prevcol = {};
 
-
+function verdict(){
+  let hacks = document.querySelectorAll('.verdict-challenged');
+  for(var i = 0 ; i < hacks.length ; i++){
+    // console.log('h');
+    hacks[i].style.setProperty('color' , 'red' , 'important');
+  }
+}
 function convertColors() {
   var elements = document.querySelectorAll('*');
 
@@ -314,7 +337,9 @@ function linkcolor(){
     // Iterate through each anchor tag
     for (var i = 0; i < links.length; i++) {
       var link = links[i];
-
+      // if(link.classList.contains("click-to-view-tests")){
+      //   continue;
+      // }
     // Get the computed style of the anchor tag
     var computedStyle = getComputedStyle(link);
 
@@ -323,16 +348,22 @@ function linkcolor(){
       let clr = getContrastingColor(c );
       
       origlink[i] = link.style.color;
+    
       link.style.color = clr ;
     }
 }
 function changetablehead(){
+  let spans = document.querySelectorAll("span , .welldone");
   let table = document.getElementsByClassName("datatable");
   for(var i= 0 ; i < table.length ; i++){
     table[i].style.backgroundColor ="#a2a0ad";
     table[i].style.borderColor = "#a2a0ad";  
     var tablei = table[i].querySelectorAll('div:nth-child(5)');
     tablei[0].style.color = "black";
+
+    // for(var i = 0 ; i < spans.length ; i++){
+    //   spans[i].style.color = 'rgb(0 141 165)';
+    // }
   }
 
   var rp = document.querySelectorAll(".rejected-problem .act");
@@ -365,7 +396,7 @@ function changetablehead(){
   })
 }
 function changeinput(){
-  let I = document.getElementsByTagName("input");
+  let I = document.querySelectorAll("input");
     for(var j = 0; j < I.length ; j++)
     {
       I[j].style.color = "black";
@@ -374,14 +405,14 @@ function changeinput(){
   var fileInput = document.querySelector('input[type="file"]');
   console.log(fileInput);
   if(fileInput != null){
-    fileInput.style.color = "#a2a0ad";
+    fileInput.style.color = "black";
   }
 }
 function constcolor(){
 
   setTimeout(function() {
     console.log("Delayed action executed after 2 seconds");
-    let elemens = document.querySelectorAll('.mo , .mi , .mn');
+    let elemens = document.querySelectorAll('.mo , .mi , .mn , .mtext');
     // console.log(elemens);
     for(var i = 0 ; i < elemens.length ; i++){
       elemens[i].style.color = "#00ff00";
@@ -449,7 +480,15 @@ tags.forEach((tag)=>{
   tag.style.color = "black";
 })
 }
-
+function change_spoiler(){
+  let a = document.querySelectorAll(".spoiler-content")
+  for(var i = 0 ; i < a.length; i++){
+    var b = a[i];
+    // b.style.setProperty('backgroud-color' , 'black' , 'important');
+    b.style.backgroundColor = '#1D1D1C';
+    constcolor();
+}
+}
 function getProblemIndex(problemId) {
   const problemIdChar = problemId.charCodeAt(0);
   const baseCharCode = 'A'.charCodeAt(0);
@@ -563,3 +602,29 @@ function getContrastingColor(rgbValue) {
 
   return adjustedColor;
 }
+
+
+// var script = document.createElement('script');
+// script.src = 'https://code.jquery.com/jquery-3.7.0.js';
+// // script.integrity= "sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=";
+// script.crossorigin="anonymous";
+// script.type = 'text/javascript';
+// document.getElementsByTagName('head')[0].appendChild(script);
+
+// var easingScript = document.createElement('script');
+// easingScript.src = 'https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js';
+// easingScript.type = 'text/javascript';
+// document.getElementsByTagName('head')[0].appendChild(easingScript);
+
+
+// document.addEventListener('DOMContentLoaded', function() {
+//   // Your code that uses jQuery goes here
+//   $('.spoiler-content').css('background-color', 'red');
+//   $('.mo').css('color' , 'pink');
+// });
+
+
+// // $(document).ready(function() {
+// //   // Select the elements with the desired class and change their color
+  
+// });
